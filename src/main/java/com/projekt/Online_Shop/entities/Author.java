@@ -17,9 +17,8 @@ import java.util.List;
 @Table(name = "authors")
 
 public class Author extends GenericEntity{
-    @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY)
-    private Long id;
+
+
     private String firstname;
     private String lastname;
     @OneToMany
