@@ -8,11 +8,6 @@ import lombok.Data;
 @Table(name="users")
 public class UserAccount  extends GenericEntity {
 
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @Column(unique=true)
     private String email;
     private String password;
@@ -22,16 +17,8 @@ public class UserAccount  extends GenericEntity {
     private String zipCode;
     private String avatarUrl;
 
-    @Enumerated(EnumType.STRING)
-    private MessageChannelPreference messageChannelPreference;
-
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
-
-    public enum MessageChannelPreference {
-        STANDARD_MAIL,
-        EMAIL
-    }
 
 }

@@ -22,6 +22,6 @@ public class Author extends GenericEntity{
     private String firstname;
     private String lastname;
     @OneToMany
-    private List< Product> products;
+    private List<Product> products;
 }
 

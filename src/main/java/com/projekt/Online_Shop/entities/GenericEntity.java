@@ -15,4 +15,5 @@ public class GenericEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
 }

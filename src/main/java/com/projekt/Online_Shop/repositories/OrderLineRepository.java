@@ -1,4 +1,7 @@
 package com.projekt.Online_Shop.repositories;
 
-public interface OrderLineRepository {
+import com.projekt.Online_Shop.entities.OrderLine;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface OrderLineRepository extends JpaRepository<OrderLine, Long> {
 }
