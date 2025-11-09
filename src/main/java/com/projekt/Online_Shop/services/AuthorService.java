@@ -23,7 +23,7 @@ public class AuthorService {
     public void deleteAuthor(Author authorDetails){
         authorRepository.delete(authorDetails);
     }
-    public Author findAuthorById(int id){
+    public Author findAuthorById(Long id){
         return authorRepository.findById(id).orElseThrow(()-> new RuntimeException("Author Not Found"));
     }
     public List<Author>findAllAuthors(){
