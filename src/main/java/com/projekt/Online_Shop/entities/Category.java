@@ -7,19 +7,9 @@ import java.util.List;
 
 @Entity
 @Data
+@Table(name = "categories")
+public class Category extends GenericEntity {
 
-public class Category {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    @Column(unique = true)
     private String name;
-
-    @ManyToOne
-    @JoinColumn(name = "parent_id")
-    private Category parentCategory;
-
-    @OneToMany(mappedBy = "parentCategory")
-    private List<Category> childCategories;
 }
