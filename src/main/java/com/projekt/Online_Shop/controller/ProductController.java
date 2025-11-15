@@ -17,6 +17,11 @@ public class ProductController {
     @GetMapping
     public List<Product> getAll() { return productService.getAllProducts(); }
 
+    @GetMapping("/active")
+    public List<Product> getActiveProducts() {
+        return productService.getAllActiveProducts();
+    }
+
     @GetMapping("/{id}")
     public Product getById(@PathVariable Long id) {
         return productService.getProductById(id);
@@ -36,4 +41,23 @@ public class ProductController {
     public void delete(@PathVariable Long id) {
         productService.deleteProduct(id);
     }
+
+
+
+    @GetMapping("/search/title")
+    public List<Product> findByTitle(@RequestParam String title) {
+        return productService.findByTitle(title);
+    }
+
+    @GetMapping("/search/author/{authorId}")
+    public List<Product> findByAuthor(@PathVariable Long authorId) {
+        return productService.findByAuthorId(authorId);
+    }
+
+    @GetMapping("/search/category/{categoryId}")
+    public List<Product> findByCategory(@PathVariable Long categoryId) {
+        return productService.findByCategoryId(categoryId);
+    }
+
+
 }
