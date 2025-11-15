@@ -16,6 +16,7 @@ public class UserAccount  extends GenericEntity {
     private String street;
     private String zipCode;
     private String avatarUrl;
+    private boolean active;
 
     @ManyToOne
     @JoinColumn(name = "role_id")
