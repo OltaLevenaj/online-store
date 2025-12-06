@@ -77,6 +77,6 @@ public class OrderService {
 
     public List<Order> getLoggedInOrders() {
         UserAccount userAccount = userAccountService.findLoggedIn();
-        return orderRepository.findAllByUserAccount(userAccount);
+        return orderRepository.findAllByUser(userAccount);
     }
 }

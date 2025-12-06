@@ -10,10 +10,8 @@ import java.util.List;
 
 @Entity
 @Data
+@Table(name = "orders")
 public class Order extends GenericEntity {
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private UserAccount user;
     private Double totalCoast;
     private String userAddress;
     private String deliveryAddress;
@@ -23,7 +21,7 @@ public class Order extends GenericEntity {
     private LocalDateTime deliveryDate;
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private UserAccount userAccount;
+    private UserAccount user;
 
     @OneToMany
     private List<OrderLine> orderLines = new ArrayList<>();

@@ -17,7 +17,7 @@ public class CategoryController {
 
     private final CategoryService categoryService;
 
-    public CategoryController(CategoryService categoryService){
+    public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
     }
 
@@ -42,7 +42,7 @@ public class CategoryController {
     }
 
     @GetMapping("/name")
-    public Category  getByName(@RequestParam String name) {
+    public Category getByName(@RequestParam String name) {
         return categoryService.findByName(name);
     }
 
@@ -50,6 +50,6 @@ public class CategoryController {
     public List<Category> searchByName(@RequestParam String name) {
         return categoryService.searchByName(name);
     }
-    }
+}
 
 
