@@ -5,6 +5,7 @@ import com.projekt.Online_Shop.entities.GenericEntity;
 import com.projekt.Online_Shop.entities.UserAccount;
 import com.projekt.Online_Shop.repositories.UserAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -45,16 +46,37 @@ public class UserAccountService {
 
     }
 
-    public UserAccount update(UserAccount userAccount) {
-        return userAccountRepository.save(userAccount);
-
+    public UserAccount update(UserAccountDto userAccountDto) {
+        //per tu zgjidhur
+        UserAccount existing = userAccountRepository.findById(userAccountDto.getUserId())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+                existing.setEmail(userAccountDto.getEmail());
+                existing.setPassword(passwordEncoder.encode(userAccountDto.getPassword()));
+                existing.setCity(userAccountDto.getCity());
+                existing.setCountry(userAccountDto.getCountry());
+                existing.setRole(roleService.findById(userAccountDto.getRole()));
+                return userAccountRepository.save(existing);
     }
 
-    public UserAccount get(Long id) {
-        return userAccountRepository.findById(id).get();
-
+    public UserAccount findById(Long id) {
+        return userAccountRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
     }
 
+    public UserAccount findLoggedIn() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return this.findByEmail(username);
+    }
+
+    public UserAccount findByEmail(String email) {
+        return userAccountRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+    }
+
+    //find logged in user
+    public UserAccount findLoggedUser() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return this.findByEmail(username);
+    }
 
 }
 
