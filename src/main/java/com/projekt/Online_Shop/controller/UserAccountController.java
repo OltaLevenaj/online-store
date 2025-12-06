@@ -9,27 +9,27 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/admin")
 public class UserAccountController {
     @Autowired
     private UserAccountService userAccountService;
 
-    @PostMapping
+    @PostMapping("/user/create")
     public UserAccount create(@RequestBody UserAccountDto dto) {
         return userAccountService.create(dto);
     }
 
-    @GetMapping
+    @GetMapping("/user/accounts")
     public List<UserAccount> findAll() {
         return userAccountService.findAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/user/accounts/{id}")
     public UserAccount findById(@PathVariable Long id) {
         return userAccountService.findById(id);
     }
 
-    @PutMapping
+    @PutMapping("/user/update")
     public UserAccount update(@RequestBody UserAccountDto dto) {
         return userAccountService.update(dto);
     }

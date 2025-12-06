@@ -29,8 +29,12 @@ public class SecurityConfig {
             "/products/delete/",
             "/authors/create",
             "/authors/update/",
-            "category/create" ,
-            "category/update/"};
+            "category/create",
+            "category/update/",
+            "/user/accounts",
+            "/user/accounts/*",
+            "/user/update",
+            "/admin/user/create"};
 
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
